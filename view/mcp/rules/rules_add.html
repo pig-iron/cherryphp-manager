@@ -1,0 +1,44 @@
+<form class="form-horizontal">
+<div class="form-group">
+	<label for="selectId" class="col-sm-2 control-label text-right">父级项:</label>
+	<div class="col-sm-10">
+		<select class="form-control" id="selectId">
+			<option value='#@id@#'>#@name@#</option>
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="inputName" class="col-sm-2 control-label text-right">名称:</label>
+	<div class="col-sm-10">
+		<input type="text" id="inputName" class="form-control has-error" placeholder="Name">
+	</div>
+</div>
+</form>
+<script>
+$(function(){
+	$.ajax({
+		type: "POST",
+		url: "/authorization/get_rules",
+		data: {page:0},
+		dataType: "json",
+		success: function(data){
+			var html='';
+			var json=eval(data);
+			for(var i=0;i<json.data.length;i++){
+				html+=chtml($('#selectId').html(),json.data[i]);
+			}
+			$('#selectId').html(html);
+		}
+	});
+	function chtml(template,data){
+			var matchs=template.match(/#@([a-zA-Z0-9]+)@#/gi);
+			for(var i=0;i<matchs.length;i++){
+				var matchss=matchs[i];
+				matchss=matchss.replace(/#|@/gi,"");
+				template=template.replace(matchs[i],data[matchss]);
+			}
+			return template;
+	}
+
+});
+</script>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>ROG游戏管理后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="/assets/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/dashboard.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/font-awesome-4.3.0/css/font-awesome.min.css">
+	<link href="/assets/css/tree.css" rel="stylesheet" type="text/css" />
+	<style>
+		html{
+			font-size:62.5%;
+		}
+		/*左侧菜单*/
+		.sidebar{
+			border-right: 1px solid #c4c8cb;
+		}
+		/*一级菜单*/
+		.menu-first{
+			height:45px;
+			line-height:45px;
+			background-color: #e9e9e9;
+			text-decoration: none;
+			padding: 0;
+			font-size:62.5%;
+			font-weight: normal;
+			text-align: center;
+			overflow:hidden;
+		}
+		
+		/*一级菜单鼠标划过状态*/
+		.menu-first:hover{
+			text-decoration: none;
+			background-color: #d6d4d5;
+			
+		}
+		/*二级菜单*/
+		.menu-second li a{
+			background-color: #f6f6f6;
+			height:31px;
+			line-height:31px;
+			
+			font-size: 12px;
+			text-align:center;
+			text-decoration: none;
+		}
+		/*二级菜单鼠标划过样式*/
+		.menu-second li a:hover {
+			text-decoration: none;
+			background-color: #66c3ec;
+			
+		}
+		/*二级菜单选中状态*/
+		.menu-second-selected {
+			background-color: #66c3ec;
+			height:31px;
+			line-height:31px;
+			text-decoration: none;
+			text-align:center;
+		}
+		/*覆盖bootstrap的样式*/
+		.nav-list,.nav-list li a{
+			padding: 0px;
+			margin: 0px;
+		}
+		
+
+		.nav-header {
+			color: #999;
+			display: block;
+			
+			font-size: 1.8rem;
+			font-weight: bold;
+			height:40px;
+			line-height: 35px;
+			padding: 3px 15px;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+			text-transform: uppercase;
+		}
+		a:focus, a:hover{
+			text-decoration: none;
+		}
+	</style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img src="/assets/images/rog_logo.png" style="float:left;" ><a class="navbar-brand" href="#">ROG游戏管理后台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+                <ul class="dropdown-menu depth_0">
+                    <li><a href="#">Feature 1</a></li>
+                    <li><a href="#">Feature 1</a></li>
+                    <li><a href="#">Feature 1</a></li>
+                    <li><a href="#">Feature 1</a></li>
+                </ul>
+            </li>-->
+            <li><a href="#"><?php echo $agent;?></a></li>
+            <li><a href="javascript:logout();"><button class="btn btn-xs btn-danger" type="button">退出</button></a></li>
+          </ul>
+          <!--<form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>-->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+		<div class="row">
+			<!--Sidebar content-->
+			<div class="col-sm-2 col-md-2 sidebar">
+			<div class="sidebar-menu">
+                <?php if (in_array($rules_kv['服务器管理'],$rules)){ ?>
+				<a href="#serMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-desktop fa-lg"></i> 服务器管理</a>
+				<ul id="serMeun" class="nav nav-list collapse menu-second">
+                    <?php if (in_array($rules_kv['游戏服务器'],$rules)){ ?>
+					<li><a href="javascript:main('/gameserver')"><i class="fa fa-server"></i> 游戏服务器</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['邮件服务器'],$rules)){ ?>
+					<li><a href="javascript:main('/emailserver')"><i class="fa fa-envelope-o"></i> 邮件服务器</a></li>
+                    <?php } ?>
+				</ul>
+                <?php } ?>
+                <?php if (in_array($rules_kv['游戏管理'],$rules)){ ?>
+				<a href="#gameMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-gamepad fa-lg"></i> 游戏管理</a>
+				<ul id="gameMeun" class="nav nav-list collapse menu-second">
+                    <?php if (in_array($rules_kv['奖励发放'],$rules)){ ?>
+					<li><a href="javascript:main('/reward')"><i class="fa fa-ambulance"></i> 奖励发放</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['多倍奖励活动'],$rules)){ ?>
+					<li><a href="javascript:main('/multipleactivity')"><i class="fa fa-ambulance"></i> 多倍奖励活动</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['版本发布'],$rules)){ ?>
+					<li><a href="#"><i class="fa fa-ambulance"></i> 版本发布</a></li>
+                    <?php } ?>
+				</ul>
+                <?php } ?>
+                <?php if (in_array($rules_kv['系统设置'],$rules)){ ?>
+				<a href="#sysMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-gears fa-lg"></i> 系统设置</a>
+				<ul id="sysMeun" class="nav nav-list collapse menu-second">
+                    <?php if (in_array($rules_kv['奖励设置'],$rules)){ ?>
+					<li><a href="javascript:main('/rewardsetting')"><i class="fa fa-cog"></i> 奖励设置</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['游戏道具设置'],$rules)){ ?>
+					<li><a href="javascript:main('/itemsetting')"><i class="fa fa-cog"></i> 游戏道具设置</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['邮件类型设置'],$rules)){ ?>
+					<li><a href="javascript:main('/emailtype')"><i class="fa fa-cog"></i> 邮件类型设置</a></li>
+                    <?php } ?>
+				</ul>
+                <?php } ?>
+                <?php if (in_array($rules_kv['授权管理'],$rules)){ ?>
+				<a href="#authorizationMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-user-secret fa-lg"></i> 授权管理</a>
+				<ul id="authorizationMenu" class="nav nav-list collapse menu-second">
+                    <?php if (in_array($rules_kv['管理员管理'],$rules)){ ?>
+					<li><a href="javascript:main('/authorization/admin')"><i class="fa fa-users"></i> 管理员管理</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['角色管理'],$rules)){ ?>
+					<li><a href="javascript:main('/authorization/role')"><i class="fa fa-user"></i> 角色管理</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['权限项管理'],$rules)){ ?>
+					<li><a href="javascript:main('/authorization/authorization')"><i class="fa fa-user-secret"></i> 权限项管理</a></li>
+                    <?php } ?>
+				</ul>
+                <?php } ?>
+                <?php if (in_array($rules_kv['日志管理'],$rules)){ ?>
+				<a href="#logMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-file-text fa-lg"></i> 日志管理</a>
+				<ul id="logMenu" class="nav nav-list collapse menu-second">
+                    <?php if (in_array($rules_kv['操作日志'],$rules)){ ?>
+					<li><a href="javascript:main('/log')"><i class="fa fa-file-o"></i> 操作日志</a></li>
+                    <?php } ?>
+				</ul>
+                <?php } ?>
+			</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
+				
+			</div>
+		</div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="/assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+	<script src="/assets/js/jquery.tree.js" type="text/javascript"></script>
+	<script>
+		function main(urls){
+			$.ajax({
+				type: "POST",
+				url: urls,
+				data: "1",
+				dataType: "html",
+				success: function(data){
+					$('#main').html(data);
+				}
+			});
+		}
+        function logout(){
+            $.ajax({
+				type: "POST",
+				url: "/logout",
+				data: "1",
+				dataType: "html",
+				success: function(data){
+					location.href="/login";
+				}
+			});
+        }
+	</script>
+  </body>
+</html>

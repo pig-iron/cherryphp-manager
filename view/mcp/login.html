@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="../../favicon.ico">
+
+		<title>ROG游戏管理后台</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="/assets/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
+		
+	</head>
+
+	<body>
+		
+		<div class="container" style="padding-top:200px;width:350px;">
+			<div role="alert" id="tips" class="alert alert-danger hide">
+				<strong>Oh snap!</strong> Change a few things up and try submitting again.
+			</div>
+			<form class="form-signin" action="">
+				<h2 class="form-signin-heading">ROG游戏管理后台</h2>
+				<div class="form-group" id="inputAccount_group">
+					<label for="inputAccount" class="sr-only">Account</label>
+					<input type="text" id="inputAccount" class="form-control" placeholder="Account">
+				</div>
+				<div class="form-group" id="inputPassword_group">
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" id="inputPassword" class="form-control has-error" placeholder="Password">
+				</div>
+				<div class="checkbox">
+				  <!--<label>
+					<input type="checkbox" value="remember-me"> Remember me
+				  </label>-->
+				</div>
+				<button class="btn btn-lg btn-primary btn-block" type="button" id="send">登陆</button>
+			</form>
+
+		</div> <!-- /container -->
+		<div id="res"></div>
+
+		<script src="/assets/js/jquery-1.11.3.min.js"></script>
+		<script src="/assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+		
+		<script>
+
+		$(function(){
+			$('#inputAccount').change(function(){
+				$('#tips').addClass("hide");
+				$('#inputAccount_group').removeClass("has-error");
+			});
+			$('#inputPassword').change(function(){
+				$('#tips').addClass("hide");
+				$('#inputPassword_group').removeClass("has-error");
+			});
+			$('#send').click(function(){
+				if ($('#inputAccount').val()==""){
+					$('#tips').removeClass("hide");
+					$('#tips').html("请输入用户名！");
+					$('#inputAccount_group').addClass("has-error");
+					return;
+				}
+				if ($('#inputPassword').val()==""){
+					$('#tips').removeClass("hide");
+					$('#tips').html("请输入密码！");
+					$('#inputPassword_group').addClass("has-error");
+					return;
+				}
+				$.ajax({
+					type: "POST",
+					url: "/login/auth",
+					data: {user:$("#inputAccount").val(), pass:$("#inputPassword").val()},
+					dataType: "json",
+					success: function(data){
+						var json=eval(data);
+						if (json.state==1 && json.auth==1){
+							location.href="../index";
+						}else{
+                            $('#tips').removeClass("hide");
+							$('#tips').html("<p style='color:red;'>用户名密码错误！</p>");
+						}
+					}
+				});
+			});
+		});
+		</script>
+	</body>
+</html>
