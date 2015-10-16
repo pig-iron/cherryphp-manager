@@ -5,7 +5,7 @@ return array(
             'dblocal' =>  'localhost',
             'dbport'  =>  '3306',
             'dbuser'  =>  'root',
-            'dbpass'  =>  'unicorn',
+            'dbpass'  =>  '123',
             'dbname'  =>  'rogmgr',
         ),
     ),
