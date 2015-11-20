@@ -7,6 +7,14 @@
 		<!--<button class="btn btn-sm btn-warning" type="button" id="B_update">修改</button>-->
 		<?php if (in_array($rules_kv['Server-反激活'],$rules)){ ?><button class="btn btn-sm btn-danger" type="button" id="reactive">反激活</button><?php } ?>
 		<!--<button class="btn btn-sm btn-link hide" type="button">Link</button>-->
+        <?php if (in_array($rules_kv['Server-启动'],$rules)){ ?><button class="btn btn-sm btn-warning" type="button" id="launch">启动</button>
+        <select id='selver' class="selectpicker">
+        <?php foreach ($ver_l as $v){ ?>
+            <option <?php if ($dbv[0]['jsondata']==$v){ echo "selected='selected'"; } ?>><?php echo $v; ?></option>
+        <?php } ?>
+        </select>
+        <?php } ?>
+        <span class='badge' style="float:right;" id='onlinenum'>在线人数 : </span>
     </p>
 	<table class="table table-striped table-hover" style="background-color:#cccccc;">
     <thead>
@@ -88,9 +96,15 @@ function pages(num){
 			var page_html='';
 			var json=eval(data);
 			var template='<tr><td class="bs-checkbox"><input type="checkbox" name="btSelectItem" data-index="#@sid@#"></td><td>#@server_type@#</td><td>#@sid@#</td><td>#@server_name@#</td><td>#@service_ip@#</td><td>#@actived@#</td><td>#@server_version@#</td><td>#@port@#</td><td>#@playerNum@#</td><td>#@server_port@#</td><td>#@server_ip@#</td></tr>';
-			for(var i=0;i<json.data.length;i++){
-				html+=chtml(template,json.data[i]);
-			}
+			var allplayer=parseInt(0);
+            if (json.data!=null){
+                for(var i=0;i<json.data.length;i++){
+                    allplayer+=parseInt(json.data[i]['playerNum']);
+                    html+=chtml(template,json.data[i]);
+                }
+            }else{
+                html="";
+            }
 			$('#rules_data').html(html);
 			var pages=Math.ceil(json.total.counts/10);
 			var s_page=num-2;
@@ -119,6 +133,9 @@ function pages(num){
 				page_html+='<li class="page-number"><a href="javascript:pages('+pages+')">>></a></li>';
 			}
 			$('#pageui').html(page_html);
+            
+            $('#ds').html("<a href=\"javascript:gameserver('/sds','ds')\">Server <span class='badge'>"+json.total.counts+"</span></a>");
+            $('#onlinenum').html("在线人数 : "+allplayer);
 			var btSelectItem=document.getElementsByName("btSelectItem");
 			for(var i=0;i<btSelectItem.length;i++){
 				btSelectItem[i].onclick=function(){
@@ -131,6 +148,8 @@ function pages(num){
 	});
 }
 function loading(){
+    $('#ds').html("<a href=\"javascript:gameserver('/sds','ds')\">Server <img src='/assets/images/icons/indicator.gif' /></a>");
+   
     $('#rules_data').html('');
     $('#pageui').html(''); 
 }
@@ -176,7 +195,7 @@ $(function(){
 			dataType: "json",
 			success: function(data){
 				var json=eval(data);
-				if (json.stats==1){
+				if (json.ret==1){
 					$('#myModal').modal('hide');
 					$('#myModal').removeAttr("ids");
 					pages(1);
@@ -202,7 +221,26 @@ $(function(){
 			dataType: "json",
 			success: function(data){
 				var json=eval(data);
-				if (json.stats==1){
+				if (json.ret==1){
+					$('#myModal').modal('hide');
+					$('#myModal').removeAttr("ids");
+					pages(1);
+				}else{
+					alert("error");
+				}
+			}
+		});
+	});
+    
+    $('#launch').click(function(){
+        $.ajax({
+			type: "POST",
+			url: "/launchserver",
+			data: {"gmcmd":"startserver", "version":$(".selectpicker").val()},
+			dataType: "json",
+			success: function(data){
+				var json=eval(data);
+				if (json.ret==1){
 					$('#myModal').modal('hide');
 					$('#myModal').removeAttr("ids");
 					pages(1);

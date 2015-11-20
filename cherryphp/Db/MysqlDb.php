@@ -15,7 +15,7 @@ class MysqlDb extends \Db\BaseDb
     {
 
 		$resLink=parent::sqlQuery(self::$_mysql->_db,$sql);
-		while($resource=mysqli_fetch_array($resLink,MYSQL_ASSOC))
+		while($resource=mysqli_fetch_array($resLink,MYSQLI_ASSOC))
         {
             $result[]=$resource;
         }
@@ -25,7 +25,20 @@ class MysqlDb extends \Db\BaseDb
             return false;
         }
     }
-	    
+	
+    public function check_param($params)
+    {
+        foreach ($params as $K=>$V)
+            {
+                $params[$K]=stripslashes($V);
+                if (!is_numeric($V))
+                {
+                    $params[$K] = mysqli_real_escape_string(self::$_mysql->_db,$V);
+                }
+        }
+        return $params;
+    }
+    
     public function sql_query($sql)
     {
 		return $resLink=parent::sqlQuery(self::$_mysql->_db,$sql);

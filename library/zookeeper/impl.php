@@ -70,7 +70,7 @@ class impl extends \library\zookeeper\base
             return json_encode($res);
         }
 
-        $sendpack = pack("SSIa16IIa*", 1, 0, time(), $_SESSION[SESSIONUSER], 0, strlen($gmcmd), $gmcmd);
+        $sendpack = pack("SSIa16IIa*", 1, 0, time(), $_COOKIE['rogmgr_user'], 0, strlen($gmcmd), $gmcmd);
 
         if(!socket_write($sock, $sendpack, strlen($sendpack))) {
             $res['msg'] = $lang[SEND_DATA_FAILED] . ' :'. socket_strerror($conn);
@@ -80,7 +80,7 @@ class impl extends \library\zookeeper\base
         $resHeader = socket_read($sock, 32, PHP_BINARY_READ);
         $arrHeader = unpack("Sid/Sversion/Ilogid/a16provider/Ireserved/Ibdlen", $resHeader);
         $respack = socket_read($sock, $arrHeader["bdlen"],PHP_BINARY_READ);
-
+        
         return $respack;
     }
 }

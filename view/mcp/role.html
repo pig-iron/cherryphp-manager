@@ -13,7 +13,7 @@
     <thead>
     <tr>
       <th><input type="checkbox" id="checkAll" name="btSelectAll"></th>
-	  <th>角色ID</th>
+	  <th style="min-width:80px;">角色ID</th>
       <th>角色名称</th>
       <th>角色权限项列表</th>
     </tr>
@@ -73,7 +73,7 @@ function pages(num){
 			var html='';
 			var page_html='';
 			var json=eval(data);
-			var template='<tr><td class="bs-checkbox"><input type="checkbox" name="btSelectItem" data-index="#@id@#"></td><td>#@id@#</td><td>#@name@#</td><td>#@rules@#</td></tr>';
+			var template='<tr><td class="bs-checkbox"><input type="checkbox" name="btSelectItem" data-index="#@id@#"></td><td>#@id@#</td><td>#@name@#</td><td style="word-wrap:break-word;word-break:break-all;">#@rules@#</td></tr>';
 			for(var i=0;i<json.data.length;i++){
 				html+=chtml(template,json.data[i]);
 			}

@@ -24,5 +24,10 @@ return array(
     'log'                  => array('mcp\log', 'index', ''),
     'logact'               => array('mcp\log', '', ''),
     'logout'               => array('mcp\login','logout',''),
-    'getkv'                => array('mcp\login','get_kv',''),
+    'getkv'                => array('mcp\login','get_kv',''),//测试权限对应关系列表
+    'version'              => array('mcp\version','index',''),
+    'savever'              => array('mcp\version','save',''), 
+    'launchserver'         => array('mcp\gameserver','launchServer',''), 
+    'getcharts'            => array('mcp\charts','getcharts',''), //测试图标数据
+    'analytics'            => array('mcp\analytics','',''), //测试图标数据
 );

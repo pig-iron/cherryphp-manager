@@ -3126,6 +3126,7 @@ fieldset[disabled] .btn-default.active {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
+
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
@@ -3187,6 +3188,76 @@ fieldset[disabled] .btn-primary.active {
   color: #337ab7;
   background-color: #fff;
 }
+
+/*self button*/
+.btn-primary2 {
+  color: #fff;
+  background-color: #74b733;
+  border-color: #6ea42e;
+}
+.btn-primary2:focus,
+.btn-primary2.focus {
+  color: #fff;
+  background-color: #5e9028;
+  border-color: #2c4012;
+}
+.btn-primary2:hover {
+  color: #fff;
+  background-color: #5e9028;
+  border-color: #4b7420;
+}
+.btn-primary2:active,
+.btn-primary2.active,
+.open > .dropdown-toggle.btn-primary2 {
+  color: #fff;
+  background-color: #5e9028;
+  border-color: #4b7420;
+}
+.btn-primary2:active:hover,
+.btn-primary2.active:hover,
+.open > .dropdown-toggle.btn-primary2:hover,
+.btn-primary2:active:focus,
+.btn-primary2.active:focus,
+.open > .dropdown-toggle.btn-primary2:focus,
+.btn-primary2:active.focus,
+.btn-primary2.active.focus,
+.open > .dropdown-toggle.btn-primary2.focus {
+  color: #fff;
+  background-color: #4b7420;
+  border-color: #2c4012;
+}
+.btn-primary2:active,
+.btn-primary2.active,
+.open > .dropdown-toggle.btn-primary2 {
+  background-image: none;
+}
+.btn-primary2.disabled,
+.btn-primary2[disabled],
+fieldset[disabled] .btn-primary2,
+.btn-primary2.disabled:hover,
+.btn-primary2[disabled]:hover,
+fieldset[disabled] .btn-primary2:hover,
+.btn-primary2.disabled:focus,
+.btn-primary2[disabled]:focus,
+fieldset[disabled] .btn-primary2:focus,
+.btn-primary2.disabled.focus,
+.btn-primary2[disabled].focus,
+fieldset[disabled] .btn-primary2.focus,
+.btn-primary2.disabled:active,
+.btn-primary2[disabled]:active,
+fieldset[disabled] .btn-primary2:active,
+.btn-primary2.disabled.active,
+.btn-primary2[disabled].active,
+fieldset[disabled] .btn-primary2.active {
+  background-color: #74b733;
+  border-color: #6ea42e;
+}
+.btn-primary2 .badge {
+  color: #74b733;
+  background-color: #fff;
+}
+/*self button*/
+
 .btn-success {
   color: #fff;
   background-color: #5cb85c;

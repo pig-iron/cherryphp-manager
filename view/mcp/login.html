@@ -11,45 +11,95 @@
 
 		<title>ROG游戏管理后台</title>
 		<!-- Bootstrap core CSS -->
-		<link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
 		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
 		<link rel="stylesheet" href="/assets/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
-		
+			<style>
+            body {
+                background-color: #fff;
+                margin: 0px;
+                /*overflow: hidden;*/
+                font-family:arial;
+                color:#fff;
+            }
+            h1{
+                margin:0;
+            }
+
+            a {
+                color:#0078ff;
+            }
+            #canvas{
+                width:100%;
+                height:100%;
+                overflow: hidden;
+                position:absolute;
+                top:0;
+                left:0;
+                background-image:url('/assets/images/slider-bg.jpg');              
+            }
+            .canvas-wrap{
+                position:relative;
+                
+            }
+            div.canvas-content{
+                position:relative;
+                z-index:1;
+                color:#fff;
+                text-align:center;
+                padding-top:30px;
+            }
+            .margintop{margin: 0 auto;}
+            @media (min-width: 768px) {
+                .margintop{margin-top:200px;}
+            }
+        </style>
 	</head>
 
-	<body>
-		
-		<div class="container" style="padding-top:200px;width:350px;">
-			<div role="alert" id="tips" class="alert alert-danger hide">
-				<strong>Oh snap!</strong> Change a few things up and try submitting again.
-			</div>
-			<form class="form-signin" action="">
-				<h2 class="form-signin-heading">ROG游戏管理后台</h2>
-				<div class="form-group" id="inputAccount_group">
-					<label for="inputAccount" class="sr-only">Account</label>
-					<input type="text" id="inputAccount" class="form-control" placeholder="Account">
-				</div>
-				<div class="form-group" id="inputPassword_group">
-					<label for="inputPassword" class="sr-only">Password</label>
-					<input type="password" id="inputPassword" class="form-control has-error" placeholder="Password">
-				</div>
-				<div class="checkbox">
-				  <!--<label>
-					<input type="checkbox" value="remember-me"> Remember me
-				  </label>-->
-				</div>
-				<button class="btn btn-lg btn-primary btn-block" type="button" id="send">登陆</button>
-			</form>
-
-		</div> <!-- /container -->
+	<body style="background-image:url('/assets/images/loginbg.gif');">
+        <section class="canvas-wrap">
+            <div class="container canvas-content margintop" style="width:100%;">
+                <div class="container" style="padding:100px 0px 100px 0px;width:350px;">
+                    <div role="alert" id="tips" class="alert alert-danger hide">
+                        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                    </div>
+                    <form class="form-signin" action="">
+                        <h2 class="form-signin-heading" style="color:#FFF;">ROGEYE</h2>
+                        <div class="form-group" id="inputAccount_group">
+                            <label for="inputAccount" class="sr-only">Account</label>
+                            <input type="text" id="inputAccount" class="form-control" placeholder="Account">
+                        </div>
+                        <div class="form-group" id="inputPassword_group">
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" id="inputPassword" class="form-control has-error" placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                          <!--<label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                          </label>-->
+                        </div>
+                        <button class="btn btn-lg btn-primary2 btn-block" type="button" id="send">LOG IN</button>
+                    </form>
+                </div> <!-- /container -->
+            </div>
+        <div id="canvas" class="gradient"></div>
+        </section>
 		<div id="res"></div>
 
 		<script src="/assets/js/jquery-1.11.3.min.js"></script>
 		<script src="/assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-		
+		<script src="/assets/js/3d/three.min.js"></script>
+        <script src="/assets/js/3d/projector.js"></script>
+        <script src="/assets/js/3d/canvas-renderer.js"></script>
+        <script src="/assets/js/3d/3d-lines-animation.js"></script>
 		<script>
 
 		$(function(){
+            document.onkeydown = function (event){
+        　　if (event.keyCode==13) //回车键的键值为13
+        　　　　$('#send').trigger("click");
+        　　};
+        
 			$('#inputAccount').change(function(){
 				$('#tips').addClass("hide");
 				$('#inputAccount_group').removeClass("has-error");
@@ -82,7 +132,7 @@
 							location.href="../index";
 						}else{
                             $('#tips').removeClass("hide");
-							$('#tips').html("<p style='color:red;'>用户名密码错误！</p>");
+							$('#tips').html("<p>用户名密码错误！</p>");
 						}
 					}
 				});

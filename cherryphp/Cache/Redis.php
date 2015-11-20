@@ -1,22 +1,33 @@
 <?php
-class Cache_McaChe
+namespace Cache;
+class Redis
 {
-    private $_memcache;
-	
+    private $_redis;
+	protected static $_instance = null;
+    
     public function __construct($params)
     {
-        $this->_memcache=new Memcache;
-        $this->_memcache->addServer($params['cachehost'],$params['cacheport']);
+        $this->_redis=new \Redis();
+        $this->_redis->connect($params['host'],$params['port']);
     }
     
     public function _Cset($params)
     {   
-        $param=explode(',',$params);
-        $this->_memcache->set($param[0],$param[1],$param[2],$param[3]);
+        return $this->_redis->set($params[0],$params[1]);
     }
     
     public function _Cget($params)
     {
-        return $this->_memcache->get($params);
+        return $this->_redis->get($params);
+    }
+    
+    public function _Ckeys($params)
+    {
+        return $this->_redis->keys($params);
+    }
+    
+    public function _Cdel($params)
+    {
+        return $this->_redis->delete($params);
     }
 }

@@ -23,6 +23,9 @@
 		html{
 			font-size:62.5%;
 		}
+        @media (min-width: 768px) {
+            .navbarhide{display: none !important;}
+        }
 		/*左侧菜单*/
 		.sidebar{
 			border-right: 1px solid #c4c8cb;
@@ -106,18 +109,85 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img src="/assets/images/rog_logo.png" style="float:left;" ><a class="navbar-brand" href="#">ROG游戏管理后台</a>
+          <img src="/assets/images/rog_logo.png" style="float:left;" ><a class="navbar-brand" href="/index">ROGEYE</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <!--<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+            <?php if (in_array($rules_kv['服务器管理'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">服务器管理<b class="caret"></b></a>
                 <ul class="dropdown-menu depth_0">
-                    <li><a href="#">Feature 1</a></li>
-                    <li><a href="#">Feature 1</a></li>
-                    <li><a href="#">Feature 1</a></li>
-                    <li><a href="#">Feature 1</a></li>
+                    <?php if (in_array($rules_kv['游戏服务器'],$rules)){ ?>
+                    <li><a href="javascript:main('/gameserver')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">游戏服务器</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['邮件服务器'],$rules)){ ?>
+                    <li><a href="javascript:main('/emailserver')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">邮件服务器</a></li>
+                    <?php } ?>
                 </ul>
-            </li>-->
+            </li>
+            <?php } ?>
+            <?php if (in_array($rules_kv['游戏管理'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">游戏管理<b class="caret"></b></a>
+                <ul class="dropdown-menu depth_0">
+                    <?php if (in_array($rules_kv['奖励发放'],$rules)){ ?>
+                    <li><a href="javascript:main('/reward')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">奖励发放</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['多倍奖励活动'],$rules)){ ?>
+                    <li><a href="javascript:main('/multipleactivity')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">多倍奖励活动</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['版本发布'],$rules)){ ?>
+                    <li><a href="javascript:main('/version')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">版本发布</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+            <?php if (in_array($rules_kv['系统设置'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">系统设置<b class="caret"></b></a>
+                <ul class="dropdown-menu depth_0">
+                    <?php if (in_array($rules_kv['奖励设置'],$rules)){ ?>
+                    <li><a href="javascript:main('/rewardsetting')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">奖励设置</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['游戏道具设置'],$rules)){ ?>
+                    <li><a href="javascript:main('/itemsetting')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">游戏道具设置</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['邮件类型设置'],$rules)){ ?>
+                    <li><a href="javascript:main('/emailtype')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">邮件类型设置</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+            <?php if (in_array($rules_kv['统计数据'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">统计数据<b class="caret"></b></a>
+                <ul class="dropdown-menu depth_0">
+                    <?php if (in_array($rules_kv['统计信息'],$rules)){ ?>
+                    <li><a href="javascript:main('/analytics/index')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">统计信息</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+            <?php if (in_array($rules_kv['授权管理'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">授权管理<b class="caret"></b></a>
+                <ul class="dropdown-menu depth_0">
+                    <?php if (in_array($rules_kv['管理员管理'],$rules)){ ?>
+                    <li><a href="javascript:main('/authorization/admin')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">管理员管理</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['角色管理'],$rules)){ ?>
+                    <li><a href="javascript:main('/authorization/role')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">角色管理</a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['权限项管理'],$rules)){ ?>
+                    <li><a href="javascript:main('/authorization/authorization')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">权限项管理</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+            <?php if (in_array($rules_kv['日志管理'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">日志管理<b class="caret"></b></a>
+                <ul class="dropdown-menu depth_0">
+                    <?php if (in_array($rules_kv['操作日志'],$rules)){ ?>
+                    <li><a href="javascript:main('/log')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">操作日志</a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
             <li><a href="#"><?php echo $agent;?></a></li>
             <li><a href="javascript:logout();"><button class="btn btn-xs btn-danger" type="button">退出</button></a></li>
           </ul>
@@ -154,7 +224,7 @@
 					<li><a href="javascript:main('/multipleactivity')"><i class="fa fa-ambulance"></i> 多倍奖励活动</a></li>
                     <?php } ?>
                     <?php if (in_array($rules_kv['版本发布'],$rules)){ ?>
-					<li><a href="#"><i class="fa fa-ambulance"></i> 版本发布</a></li>
+					<li><a href="javascript:main('/version')"><i class="fa fa-ambulance"></i> 版本发布</a></li>
                     <?php } ?>
 				</ul>
                 <?php } ?>
@@ -169,6 +239,14 @@
                     <?php } ?>
                     <?php if (in_array($rules_kv['邮件类型设置'],$rules)){ ?>
 					<li><a href="javascript:main('/emailtype')"><i class="fa fa-cog"></i> 邮件类型设置</a></li>
+                    <?php } ?>
+				</ul>
+                <?php } ?>
+                <?php if (in_array($rules_kv['统计数据'],$rules)){ ?>
+				<a href="#analyticsMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-bar-chart fa-lg"></i> 统计数据</a>
+				<ul id="analyticsMenu" class="nav nav-list collapse menu-second">
+                    <?php if (in_array($rules_kv['统计信息'],$rules)){ ?>
+					<li><a href="javascript:main('/analytics/index')"><i class="fa fa-list"></i> 统计信息</a></li>
                     <?php } ?>
 				</ul>
                 <?php } ?>
@@ -208,6 +286,8 @@
     <script src="/assets/js/jquery-1.11.3.min.js"></script>
     <script src="/assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 	<script src="/assets/js/jquery.tree.js" type="text/javascript"></script>
+    <script src="/assets/js/highcharts.js"></script>
+    <script src="/assets/js/modules/exporting.js"></script>
 	<script>
 		function main(urls){
 			$.ajax({
@@ -231,6 +311,7 @@
 				}
 			});
         }
+        main("/analytics/index");
 	</script>
   </body>
 </html>

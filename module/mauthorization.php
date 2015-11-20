@@ -155,12 +155,16 @@ class mauthorization
 	}
 	
     public static function get_rules_kv(){
-        if (file_exists(APP_PATH."cache/rules_kv.map")){
-            return require_once(APP_PATH."cache/rules_kv.map");
+        if ($_COOKIE['rogmgr_user']){
+            if (file_exists(APP_PATH."cache/rules_kv.map")){
+                return require_once(APP_PATH."cache/rules_kv.map");
+            }else{
+                self::cache_rules_kv();
+                return require(APP_PATH."cache/rules_kv.map");
+            }
         }else{
-            self::cache_rules_kv();
-            return require(APP_PATH."cache/rules_kv.map");
-        }
+			echo "<script>window.location.href='/index'</script>";
+		}
     }
     
     public static function cache_rules_kv(){
@@ -207,7 +211,7 @@ class mauthorization
 	
 	public static function role_add($params)
 	{
-		$sql="INSERT INTO rogmgr_user_rules set name='".$params['name']."', rules='".$params['rules']."'";
+		$sql="INSERT INTO rogmgr_user_rules SET name='".$params['name']."', rules='".$params['rules']."'";
 		$stats=\Init::db()->sql_query($sql);
         \module\mlog::sysLog("添加角色,角色名称:".$params['name']."角色权限项:".$params['rules']);
 		return array("stats"=>$stats);

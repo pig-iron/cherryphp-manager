@@ -30,6 +30,6 @@ class BaseDb
 	
     public function sqlQuery($db,$sql)
     {
-		return $resLink=mysqli_query($db,$sql);
+		return mysqli_query($db,$sql);
     }
 }

@@ -69,6 +69,7 @@ class Dispatch
 		$Create=new $Class;
 		$Action=empty($Action)?"index":$Action;
 		if (method_exists($Create,$Action)){
+            $ParamArr = Init::db()->check_param($ParamArr);
 			$Create->$Action($ParamArr);
 		}else{
 			header("HTTP/1.0 404 Not Found");

@@ -22,6 +22,10 @@ class gameserver extends \cherryphp\CherryView
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
         if (in_array($rules_kv['BattleServer-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+            $res=\module\mversion::get_version();
+            $dbv=\module\mversion::get_db_version();
+            $this->assign("ver_l",$res);
+            $this->assign("dbv",$dbv);
             $this->render("mcp/battleserver"); 
         }        
     }
@@ -32,6 +36,10 @@ class gameserver extends \cherryphp\CherryView
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
         if (in_array($rules_kv['Login-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+            $res=\module\mversion::get_version();
+            $dbv=\module\mversion::get_db_version();
+            $this->assign("ver_l",$res);
+            $this->assign("dbv",$dbv);
             $this->render("mcp/loginserver");
         }        
     }
@@ -42,6 +50,10 @@ class gameserver extends \cherryphp\CherryView
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
         if (in_array($rules_kv['Server-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+            $res=\module\mversion::get_version();
+            $dbv=\module\mversion::get_db_version();
+            $this->assign("ver_l",$res);
+            $this->assign("dbv",$dbv);
             $this->render("mcp/defaultserver"); 
         }        
     }
@@ -62,14 +74,21 @@ class gameserver extends \cherryphp\CherryView
     {
         $getobj=new \module\mzkserver;
         $res=$getobj->activeServer($params);
-		echo json_encode($res);
+		echo $res;
     }
     
 	public function reActiveServer($params)
     {
         $getobj=new \module\mzkserver;
         $res=$getobj->reActiveServer($params);
-		echo json_encode($res);
+		echo $res;
+    }
+    
+    public function launchServer($params)
+    {
+        $getobj=new \module\mzkserver;
+        $res=$getobj->sendGMcode($params);
+		echo $res;
     }
     
 	public function getLogin($params)

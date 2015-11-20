@@ -101,6 +101,8 @@ class dataset extends \cherryphp\CherryView
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
         if (in_array($rules_kv['奖励发放-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+            $rewardsetting_data=\module\mdataset::get_rewardsetting($params);
+            $this->assign("rewardsetting_data",json_encode($rewardsetting_data['data'][0]['jsondata']));
             $this->render("mcp/reward");
         }
 	}
@@ -116,5 +118,10 @@ class dataset extends \cherryphp\CherryView
 		$res=\module\mdataset::set_reward($params);
 		echo json_encode($res);
 	}	
+    
+    public function send_reward_show()
+    {
+        $this->render("mcp/reward/sendreward");
+    }
 	
 }

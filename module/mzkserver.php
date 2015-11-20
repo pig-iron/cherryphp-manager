@@ -55,8 +55,6 @@ class mzkserver
             \module\mlog::sysLog("激活服务器，ID:".$sid);
             return $retVal;
         }
-        
-        $activeMsg = "Set ".$server_index_str." to active!";
     }
     
     public static function reActiveServer($params)
@@ -68,7 +66,22 @@ class mzkserver
             \module\mlog::sysLog("反激活服务器，ID:".$sid);
             return $retVal;
         }
-        $activeMsg = "Set ".$server_index_str." to reActive!";
+    }
+    
+    public static function sendGMcode($params)
+	{
+        
+        $request = '{';
+        foreach ($params as $key => $sid) {
+            $request .= '"'.$key.'":"'.$sid.'", ';
+        }
+        $request=substr($request,0,-2);
+        $request .= '}';
+        
+        $retVal = self::$zk->sendGMCmd($request);
+        \module\mlog::sysLog("发送GM命令:".$request);
+        return $retVal;
+        
     }
     
     public static function getEmailServer($params)

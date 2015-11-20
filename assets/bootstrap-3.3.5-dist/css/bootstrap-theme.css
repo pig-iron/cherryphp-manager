@@ -5,6 +5,7 @@
  */
 .btn-default,
 .btn-primary,
+.btn-primary2,
 .btn-success,
 .btn-info,
 .btn-warning,
@@ -15,12 +16,14 @@
 }
 .btn-default:active,
 .btn-primary:active,
+.btn-primary2:active,
 .btn-success:active,
 .btn-info:active,
 .btn-warning:active,
 .btn-danger:active,
 .btn-default.active,
 .btn-primary.active,
+.btn-primary2.active,
 .btn-success.active,
 .btn-info.active,
 .btn-warning.active,
@@ -30,18 +33,21 @@
 }
 .btn-default.disabled,
 .btn-primary.disabled,
+.btn-primary2.disabled,
 .btn-success.disabled,
 .btn-info.disabled,
 .btn-warning.disabled,
 .btn-danger.disabled,
 .btn-default[disabled],
 .btn-primary[disabled],
+.btn-primary2[disabled],
 .btn-success[disabled],
 .btn-info[disabled],
 .btn-warning[disabled],
 .btn-danger[disabled],
 fieldset[disabled] .btn-default,
 fieldset[disabled] .btn-primary,
+fieldset[disabled] .btn-primary2,
 fieldset[disabled] .btn-success,
 fieldset[disabled] .btn-info,
 fieldset[disabled] .btn-warning,
@@ -51,6 +57,7 @@ fieldset[disabled] .btn-danger {
 }
 .btn-default .badge,
 .btn-primary .badge,
+.btn-primary2 .badge,
 .btn-success .badge,
 .btn-info .badge,
 .btn-warning .badge,
@@ -145,6 +152,49 @@ fieldset[disabled] .btn-primary.active {
   background-color: #265a88;
   background-image: none;
 }
+
+.btn-primary2 {
+  background-image: -webkit-linear-gradient(top, #74b733 0%, #5e9028 100%);
+  background-image:      -o-linear-gradient(top, #74b733 0%, #5e9028 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#74b733), to(#5e9028));
+  background-image:         linear-gradient(to bottom, #74b733 0%, #5e9028 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: #6ea42e;
+}
+.btn-primary2:hover,
+.btn-primary2:focus {
+  background-color: #5e9028;
+  background-position: 0 -15px;
+}
+.btn-primary2:active,
+.btn-primary2.active {
+  background-color: #5e9028;
+  border-color: #6ea42e;
+}
+.btn-primary2.disabled,
+.btn-primary2[disabled],
+fieldset[disabled] .btn-primary2,
+.btn-primary2.disabled:hover,
+.btn-primary2[disabled]:hover,
+fieldset[disabled] .btn-primary2:hover,
+.btn-primary2.disabled:focus,
+.btn-primary2[disabled]:focus,
+fieldset[disabled] .btn-primary2:focus,
+.btn-primary2.disabled.focus,
+.btn-primary2[disabled].focus,
+fieldset[disabled] .btn-primary2.focus,
+.btn-primary2.disabled:active,
+.btn-primary2[disabled]:active,
+fieldset[disabled] .btn-primary2:active,
+.btn-primary2.disabled.active,
+.btn-primary2[disabled].active,
+fieldset[disabled] .btn-primary2.active {
+  background-color: #5e9028;
+  background-image: none;
+}
+
 .btn-success {
   background-image: -webkit-linear-gradient(top, #5cb85c 0%, #419641 100%);
   background-image:      -o-linear-gradient(top, #5cb85c 0%, #419641 100%);

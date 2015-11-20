@@ -8,6 +8,7 @@
 		<!--<button class="btn btn-sm btn-warning" type="button" id="B_update">修改</button>-->
 		<!--<button class="btn btn-sm btn-danger" type="button" id="B_del">删除</button>-->
 		<!--<button class="btn btn-sm btn-link hide" type="button">Link</button>-->
+        <?php if (in_array($rules_kv['奖励发放-发放'],$rules)){ ?><button class="btn btn-sm btn-success" id="B_send" type="button">发放奖励</button><?php } ?>
     </p>
 	<div class="hide" id="alert_all" role="alert">
 	</div>
@@ -47,6 +48,7 @@
 		<li class="page-number"><a href="javascript:void(0)">>></a></li>
 	</ul>
 </nav>-->
+
 <!-- Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
@@ -68,6 +70,37 @@
 
 			
 <script>
+select_data=JSON.parse(<?php echo $rewardsetting_data; ?>);
+function selecthtml(a,id){
+    
+    if (typeof(a)=="undefined"){
+        if (typeof(id)=="undefined"){
+            var select_html='<select class="selectpicker">';
+        }else{
+            var select_html='<select id='+id+' class="selectpicker">';
+        }
+        for (i in select_data){
+            select_html+="<option value='"+i+"'>name:"+select_data[i].name+",type:"+select_data[i].type+"</option>";
+        }
+        select_html+='</select>';
+    }else{
+        if (typeof(id)=="undefined"){
+            var select_html='<select class="selectpicker">';
+        }else{
+            var select_html='<select id='+id+' class="selectpicker">';
+        }
+        for (i in select_data){
+            if (i==a){
+                select_html+="<option value='"+i+"' selected='selected'>name:"+select_data[i].name+",type:"+select_data[i].type+"</option>";
+            }else{
+                select_html+="<option value='"+i+"'>name:"+select_data[i].name+",type:"+select_data[i].type+"</option>";
+            }
+        }
+        select_html+='</select>';
+    }
+    return select_html;
+}
+
 $('#B_add').click(function(){
 	if (typeof(inputcount)=="undefined"){
 		inputcount=0;
@@ -76,10 +109,24 @@ $('#B_add').click(function(){
 	var html=document.getElementById('rules_data').innerHTML;
 	html+="<tr>";
 	for (i in tpl){
-		html+="<td><input type='text' id='new_"+i+inputcount+"' value=''></td>";
+        if (i=="id"){
+            html+="<td>"+selecthtml('','new_'+i+inputcount)+"</td>";
+        }else{
+            html+="<td><input type='text' id='new_"+i+inputcount+"' value=''></td>";
+        }
 	}
 	html+="<td><a href='#' onclick='javascript:saveC("+inputcount+",this);'>保存</a> | <a href='#' onclick='javascript:removeC(this);'>删除</a></td></tr>";
 	document.getElementById('rules_data').innerHTML=html;
+});
+
+$('#B_send').click(function(){
+	$('#myModalLabel').html("发放奖励");
+	$('#myModalBody').html("");
+	$('#myModalBody').load("/dataset/send_reward_show");
+	$('#do').html("发放");
+	$('#cancel').html("取消");
+	$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
+	$('#myModal').attr("datatype","send");
 });
 
 function saveC(ids,elm){
@@ -110,7 +157,11 @@ function editthis(key,td){
 	var alltd=document.getElementById('rules_data').getElementsByTagName('tr')[key].getElementsByTagName('td');
 	for (i in alltd){
 		if (i<4){
-			alltd[i].innerHTML="<input type='text' id='e"+i+key+"' value='"+alltd[i].innerHTML+"' >";
+            if (i==1){
+                alltd[i].innerHTML=selecthtml(alltd[i].innerHTML,'e'+i+key);
+            }else{
+                alltd[i].innerHTML="<input type='text' id='e"+i+key+"' value='"+alltd[i].innerHTML+"' >";
+            }
 		}
 	}
 }
@@ -147,6 +198,35 @@ function savedata(){
 		}
 	});
 }
+$('#do').click(function(){
+	var dataarr="";
+	var ulrs="";
+	switch($('#myModal').attr("datatype")){
+		case "send":
+            var name=$("#sendname").val();
+            var type=$("#sendtype").val();
+            var vals=$("#sendvalue").val();
+			dataarr={"gmcmd":"reward","type":type,"value":vals,"name":name};
+			urls="/launchserver";
+		break;
+		
+	}
+	$.ajax({
+		type: "POST",
+		url: urls,
+		data: dataarr,
+		dataType: "json",
+		success: function(data){
+			var json=eval(data);
+			if (json.ret==1){
+				$('#myModal').modal('hide');
+				$('#myModal').removeAttr("ids");
+			}else{
+				alert("error");
+			}
+		}
+	});
+});
 
 function createHTML(){
 	var html='';

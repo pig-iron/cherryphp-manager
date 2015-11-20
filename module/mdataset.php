@@ -79,6 +79,12 @@ class mdataset
 	{
 		$sql1="UPDATE rogmgr_gamedata SET jsondata='".$params['jsondata']."' WHERE type='multipleactivity'";
 		$stats=\Init::db()->sql_query($sql1);
+        $statss=\Init::cache('redis')->_Cset(array("global:multiple",$params['jsondata']));
+        if ($stats && $statss){
+            $stats=1;
+        }else{
+            $stats=0;
+        }
         \module\mlog::sysLog("修改multipleactivity，value:".$params['jsondata']);
 		return array("stats"=>$stats);
 	}
@@ -98,6 +104,12 @@ class mdataset
 	{
 		$sql1="UPDATE rogmgr_gamedata SET jsondata='".$params['jsondata']."' WHERE type='reward'";
 		$stats=\Init::db()->sql_query($sql1);
+        $statss=\Init::cache('redis')->_Cset(array("global:global_reward",$params['jsondata']));
+        if ($stats && $statss){
+            $stats=1;
+        }else{
+            $stats=0;
+        }
         \module\mlog::sysLog("修改reward，value:".$params['jsondata']);
 		return array("stats"=>$stats);
 	}	

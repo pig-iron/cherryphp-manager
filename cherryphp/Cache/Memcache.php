@@ -1,5 +1,6 @@
 <?php
-class Cache_McaChe
+namespace Cache;
+class Memcache
 {
     private $_memcache;
 	
