@@ -30,4 +30,17 @@ return array(
     'launchserver'         => array('mcp\gameserver','launchServer',''), 
     'getcharts'            => array('mcp\charts','getcharts',''), //测试图标数据
     'analytics'            => array('mcp\analytics','',''), //测试图标数据
+    'bbsforumlist'         => array('mcp\bbs','loadforumlist',''),
+    'bbsload'              => array('mcp\bbs','load',''),
+    'bbsdel'               => array('mcp\bbs','del',''),
+    'bbspraise'            => array('mcp\bbs','praise',''),
+    'bbsbanlist'           => array('mcp\bbs','banlist',''),
+    'bbsban'               => array('mcp\bbs','ban',''),
+    'bbsunban'             => array('mcp\bbs','unban',''),
+    'showforumlist'        => array('mcp\bbs','showforumlist',''),
+    'showtopiclist'        => array('mcp\bbs','showtopiclist',''),
+    'showdetailtopic'      => array('mcp\bbs','showdetailtopic',''),
+    'showmpraise'          => array('mcp\bbs','showmpraise',''),
+    'showbanlist'          => array('mcp\bbs','showbanlist',''),
+    'showbbsban'           => array('mcp\bbs','showbbsban',''),
 );
