@@ -61,10 +61,10 @@ create /mcp/helloworld.php
 namespace mcp;
 class helloworld extends \cherryphp\CherryView
 {
-    private static $rules;
+    
 	public function __construct()
 	{
-        self::$rules=\module\mauthrules::authtoken();
+        
 	}
 	
 	public function index($params)
