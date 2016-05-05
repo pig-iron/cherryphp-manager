@@ -9,7 +9,7 @@
 		<meta name="author" content="">
 		<link rel="icon" href="../../favicon.ico">
 
-		<title>ROG游戏管理后台</title>
+		<title>cherryphp manager</title>
 		<!-- Bootstrap core CSS -->
 		<link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
 		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
@@ -59,12 +59,12 @@
 	<body style="background-image:url('/assets/images/loginbg.gif');">
         <section class="canvas-wrap">
             <div class="container canvas-content margintop" style="width:100%;">
-                <div class="container" style="padding:100px 0px 100px 0px;width:350px;">
+                <div class="container" style="padding:90px 0px 100px 0px;width:350px;">
                     <div role="alert" id="tips" class="alert alert-danger hide">
                         <strong>Oh snap!</strong> Change a few things up and try submitting again.
                     </div>
                     <form class="form-signin" action="">
-                        <h2 class="form-signin-heading" style="color:#FFF;">ROGEYE</h2>
+                        <h2 class="form-signin-heading" style="color:#FFF;">cherrymanager</h2>
                         <div class="form-group" id="inputAccount_group">
                             <label for="inputAccount" class="sr-only">Account</label>
                             <input type="text" id="inputAccount" class="form-control" placeholder="Account">
@@ -72,6 +72,13 @@
                         <div class="form-group" id="inputPassword_group">
                             <label for="inputPassword" class="sr-only">Password</label>
                             <input type="password" id="inputPassword" class="form-control has-error" placeholder="Password">
+                        </div>
+						<div class="form-group" id="lang_group">
+                            <label for="lang" class="sr-only">Language</label>
+                            <select id='lang' class="form-control">
+								<option value="en_US">English</option>
+								<option value="zh_CN">中文</option>
+							</select>
                         </div>
                         <div class="checkbox">
                           <!--<label>
@@ -111,20 +118,20 @@
 			$('#send').click(function(){
 				if ($('#inputAccount').val()==""){
 					$('#tips').removeClass("hide");
-					$('#tips').html("请输入用户名！");
+					$('#tips').html("<?php echo _('请输入用户名！');?>");
 					$('#inputAccount_group').addClass("has-error");
 					return;
 				}
 				if ($('#inputPassword').val()==""){
 					$('#tips').removeClass("hide");
-					$('#tips').html("请输入密码！");
+					$('#tips').html("<?php echo _('请输入密码！');?>");
 					$('#inputPassword_group').addClass("has-error");
 					return;
 				}
 				$.ajax({
 					type: "POST",
 					url: "/login/auth",
-					data: {user:$("#inputAccount").val(), pass:$("#inputPassword").val()},
+					data: {user:$("#inputAccount").val(), pass:$("#inputPassword").val(), lang:$("#lang").val()},
 					dataType: "json",
 					success: function(data){
 						var json=eval(data);
@@ -132,7 +139,7 @@
 							location.href="../index";
 						}else{
                             $('#tips').removeClass("hide");
-							$('#tips').html("<p>用户名密码错误！</p>");
+							$('#tips').html("<p><?php echo _('用户名密码错误！');?></p>");
 						}
 					}
 				});

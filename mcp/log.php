@@ -2,17 +2,18 @@
 namespace mcp;
 class log extends \cherryphp\CherryView
 {
+    private static $rules;
 	public function __construct()
 	{
-
+        self::$rules=\module\mauthrules::authtoken();
 	}
 	
 	public function index($params)
 	{
-        $this->assign("rules",explode(",",$_COOKIE['rogmgr_rules']));
+        $this->assign("rules",explode(",",self::$rules));
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
-        if (in_array($rules_kv['操作日志-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+        if (in_array($rules_kv['log/loginfo/view'],explode(",",self::$rules))){
             $this->render("mcp/log");
         }
 	}

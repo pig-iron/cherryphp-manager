@@ -1,6 +1,6 @@
 <?php
 namespace Db;
-class MysqlDb extends \Db\BaseDb
+class MysqlDb extends \Db\BaseMysqlDb
 {
 	protected static $_mysql;
 	protected $_sql;
@@ -43,6 +43,24 @@ class MysqlDb extends \Db\BaseDb
     {
 		return $resLink=parent::sqlQuery(self::$_mysql->_db,$sql);
     }
+	
+	public function sql_transaction($sqlarr)
+	{
+		$stat=true;
+		mysqli_autocommit(self::$_mysql->_db, FALSE);
+		foreach($sqlarr as $v){
+			mysqli_query(self::$_mysql->_db,$v) or die(mysqli_error(self::$_mysql->_db)) ? null : $stat=false;
+		}
+		if ($stat){
+			mysqli_commit(self::$_mysql->_db);
+			$exstat=1;
+		}else{
+			mysqli_rollback(self::$_mysql->_db);
+			$exstat=0;
+		}
+		mysqli_autocommit(self::$_mysql->_db, TRUE);
+		return $exstat;
+	}
 	
 	public function getRows()
     {

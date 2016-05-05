@@ -1,4 +1,4 @@
-<h1 class="page-header">操作日志</h1>
+<h1 class="page-header"><?php echo _('操作日志');?></h1>
 <div class="table-responsive">
 	<p>
 		<!--<button class="btn btn-sm btn-default hide" type="button">Default</button>-->
@@ -12,9 +12,9 @@
 	<table class="table table-striped table-hover " style="background-color:#cccccc;">
     <thead>
     <tr>
-	  <th style="min-width:100px;">管理员名称</th>
-      <th>操作项目</th>
-      <th>操作时间</th>
+	  <th style="min-width:100px;"><?php echo _('管理员名称');?></th>
+      <th><?php echo _('操作项目');?></th>
+      <th><?php echo _('操作时间');?></th>
     </tr>
     </thead>
     <tbody id="rules_data">
@@ -132,11 +132,11 @@ $(function(){
 		});
 	});
 	$('#B_inf').click(function(){
-		$('#myModalLabel').html("添加权限项");
+		$('#myModalLabel').html("<?php echo _('添加权限项');?>");
 		$('#myModalBody').html("");
 		$('#myModalBody').load("/logact/detailShow");
-		$('#do').html("保存");
-		$('#cancel').html("取消");
+		$('#do').html("<?php echo _('保存');?>");
+		$('#cancel').html("<?php echo _('取消');?>");
 		$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
 		$('#myModal').attr("datatype","inf");
 	});

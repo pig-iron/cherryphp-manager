@@ -30,4 +30,29 @@ class Redis
     {
         return $this->_redis->delete($params);
     }
+    
+    public function C_zRevRange($a,$b,$c)
+    {
+        return $this->_redis->zRevRange($a,$b,$c);
+    }
+    
+    public function C_zDelete($a,$b)
+    {
+        return $this->_redis->zDelete($a,$b);
+    }
+    
+    public function C_zIncrBy($a,$b,$c)
+    {
+        return $this->_redis->zIncrBy($a,$b,$c);
+    }
+    
+    public function C_zCount($a,$b,$c)
+    {
+        return $this->_redis->zCount($a,$b,$c);
+    }
+    
+    public function C_zRemRangByRank($a,$b,$c)
+    {
+        return $this->_redis->zRemRangByRank($a,$b,$c);
+    }
 }

@@ -14,7 +14,7 @@ class Cherry
     
     public static function Prepare($config)
     {
-		
+		header("Access-Control-Allow-Origin:*");
         Define('DS',DIRECTORY_SEPARATOR);
         Define('FRAMEWORK_DIR',dirname(dirname(__FILE__))."/cherryphp");
         Define('APP_DIR', dirname(dirname(__FILE__)));
@@ -28,6 +28,7 @@ class Cherry
 		foreach (Init::$Config['define'] as $k=>$v){
 			Define($k,Init::$Config['define'][$k]);
 		}
+        \library\i18n\lang::setlanguage();
 		#spl_autoload_register(array('Cherry','appClass'));
         return new self;
     }

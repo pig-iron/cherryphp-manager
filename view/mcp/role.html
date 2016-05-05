@@ -1,21 +1,21 @@
-<h1 class="page-header">角色管理</h1>
+<h1 class="page-header"><?php echo _('角色管理');?></h1>
 <div class="table-responsive">
 	<p>
 		<!--<button class="btn btn-sm btn-default hide" type="button">Default</button>-->
-		<?php if (in_array($rules_kv['角色管理-添加'],$rules)){ ?><button class="btn btn-sm btn-primary" type="button" id="B_add">添加</button><?php } ?>
+		<?php if (in_array($rules_kv['authorization/roles/add'],$rules)){ ?><button class="btn btn-sm btn-primary" type="button" id="B_add"><?php echo _('添加');?></button><?php } ?>
 		<!--<button class="btn btn-sm btn-success hide" type="button">Success</button>-->
 		<!--<button class="btn btn-sm btn-info hide" type="button">Info</button>-->
-		<?php if (in_array($rules_kv['角色管理-修改'],$rules)){ ?><button class="btn btn-sm btn-warning" type="button" id="B_update">修改</button><?php } ?>
-		<?php if (in_array($rules_kv['角色管理-删除'],$rules)){ ?><button class="btn btn-sm btn-danger" type="button" id="B_del">删除</button><?php } ?>
+		<?php if (in_array($rules_kv['authorization/roles/modify'],$rules)){ ?><button class="btn btn-sm btn-warning" type="button" id="B_update"><?php echo _('修改');?></button><?php } ?>
+		<?php if (in_array($rules_kv['authorization/roles/delete'],$rules)){ ?><button class="btn btn-sm btn-danger" type="button" id="B_del"><?php echo _('删除');?></button><?php } ?>
 		<!--<button class="btn btn-sm btn-link hide" type="button">Link</button>-->
     </p>
 	<table class="table table-striped table-hover" style="background-color:#cccccc;">
     <thead>
     <tr>
       <th><input type="checkbox" id="checkAll" name="btSelectAll"></th>
-	  <th style="min-width:80px;">角色ID</th>
-      <th>角色名称</th>
-      <th>角色权限项列表</th>
+	  <th style="min-width:80px;"><?php echo _('角色ID');?></th>
+      <th><?php echo _('角色名称');?></th>
+      <th><?php echo _('角色权限项列表');?></th>
     </tr>
     </thead>
     <tbody id="rules_data">
@@ -134,11 +134,11 @@ $(function(){
 		});
 	});
 	$('#B_add').click(function(){
-		$('#myModalLabel').html("添加角色");
+		$('#myModalLabel').html("<?php echo _('添加角色');?>");
 		$('#myModalBody').html("");
 		$('#myModalBody').load("/authorization/role_add_show");
-		$('#do').html("保存");
-		$('#cancel').html("取消");
+		$('#do').html("<?php echo _('保存');?>");
+		$('#cancel').html("<?php echo _('取消');?>");
 		$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
 		$('#myModal').attr("datatype","add");
 	});
@@ -149,13 +149,13 @@ $(function(){
 			chk_arr.push($(this).attr("data-index"));
 		});
 		if (chk_arr.length==0){
-			alert("请选择项目！");
+			alert("<?php echo _('请选择项目！');?>");
 		}else{
-			$('#myModalLabel').html("更新角色");
+			$('#myModalLabel').html("<?php echo _('更新角色');?>");
 			$('#myModalBody').html("");
 			$('#myModalBody').load("/authorization/role_update_show");
-			$('#do').html("保存");
-			$('#cancel').html("取消");
+			$('#do').html("<?php echo _('保存');?>");
+			$('#cancel').html("<?php echo _('取消');?>");
 			$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
 			$('#myModal').attr("datatype","update");
 			$('#myModal').attr("ids",chk_arr[0]);
@@ -168,14 +168,14 @@ $(function(){
 			chk_arr.push($(this).attr("data-index"));
 		});
 		if (chk_arr.length==0){
-			alert("请选择项目！");
+			alert("<?php echo _('请选择项目！');?>");
 		}else if (chk_arr.length>1){
-			alert("无法多选！");
+			alert("<?php echo _('无法多选！');?>");
 		}else{
-			$('#myModalLabel').html("删除角色");
-			$('#myModalBody').html("是否删除角色");
-			$('#do').html("是");
-			$('#cancel').html("否");
+			$('#myModalLabel').html("<?php echo _('删除角色');?>");
+			$('#myModalBody').html("<?php echo _('是否删除角色');?>");
+			$('#do').html("<?php echo _('是');?>");
+			$('#cancel').html("<?php echo _('否');?>");
 			$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
 			$('#myModal').attr("datatype","delete");
 			$('#myModal').attr("ids",chk_arr[0]);

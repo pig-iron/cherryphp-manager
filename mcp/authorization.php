@@ -2,14 +2,15 @@
 namespace mcp;
 class authorization extends \cherryphp\CherryView
 {
+    private static $rules;
 	public function __construct()
 	{
-
+        self::$rules=\module\mauthrules::authtoken();
 	}
 	
 	public function index($params)
 	{
-		if ($_COOKIE['rogmgr_user']){
+		if ($_COOKIE['r_t']){
 		}else{
 			header('location: ../login');
 		}
@@ -17,10 +18,10 @@ class authorization extends \cherryphp\CherryView
 	
 	public function role()
 	{
-        $this->assign("rules",explode(",",$_COOKIE['rogmgr_rules']));
+        $this->assign("rules",explode(",",self::$rules));
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
-        if (in_array($rules_kv['角色管理-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+        if (in_array($rules_kv['authorization/roles/view'],explode(",",self::$rules))){
             $this->render("mcp/role");
         }
 	}
@@ -66,10 +67,10 @@ class authorization extends \cherryphp\CherryView
 	
 	public function admin()
 	{
-        $this->assign("rules",explode(",",$_COOKIE['rogmgr_rules']));
+        $this->assign("rules",explode(",",self::$rules));
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
-        if (in_array($rules_kv['管理员管理-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+        if (in_array($rules_kv['authorization/admin/view'],explode(",",self::$rules))){
             $this->render("mcp/admin");
         }
 	}
@@ -133,10 +134,10 @@ class authorization extends \cherryphp\CherryView
 	
 	public function authorization($params)
 	{
-        $this->assign("rules",explode(",",$_COOKIE['rogmgr_rules']));
+        $this->assign("rules",explode(",",self::$rules));
         $rules_kv=\module\mauthorization::get_rules_kv();
         $this->assign("rules_kv",$rules_kv);
-        if (in_array($rules_kv['权限项管理-查看'],explode(",",$_COOKIE['rogmgr_rules']))){
+        if (in_array($rules_kv['authorization/rules/view'],explode(",",self::$rules))){
             $this->render("mcp/authorization");
         }
 	}

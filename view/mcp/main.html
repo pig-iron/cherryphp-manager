@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>ROG游戏管理后台</title>
+    <title>cherryphp manager</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/assets/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -109,87 +109,36 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img src="/assets/images/rog_logo.png" style="float:left;" ><a class="navbar-brand" href="/index">ROGEYE</a>
+          <img src="/assets/images/logo.png" style="float:left;" ><a class="navbar-brand" href="/index">cherrymanager</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <?php if (in_array($rules_kv['服务器管理'],$rules)){ ?>
-            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">服务器管理<b class="caret"></b></a>
+            <?php if (in_array($rules_kv['authorization'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown"><?php echo _("授权管理");?><b class="caret"></b></a>
                 <ul class="dropdown-menu depth_0">
-                    <?php if (in_array($rules_kv['游戏服务器'],$rules)){ ?>
-                    <li><a href="javascript:main('/gameserver')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">游戏服务器</a></li>
+                    <?php if (in_array($rules_kv['authorization/admin'],$rules)){ ?>
+                    <li><a href="javascript:main('/authorization/admin')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><?php echo _("管理员管理");?></a></li>
                     <?php } ?>
-                    <?php if (in_array($rules_kv['邮件服务器'],$rules)){ ?>
-                    <li><a href="javascript:main('/emailserver')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">邮件服务器</a></li>
+                    <?php if (in_array($rules_kv['authorization/roles'],$rules)){ ?>
+                    <li><a href="javascript:main('/authorization/role')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><?php echo _("角色管理");?></a></li>
+                    <?php } ?>
+                    <?php if (in_array($rules_kv['authorization/rules'],$rules)){ ?>
+                    <li><a href="javascript:main('/authorization/authorization')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><?php echo _("权限项管理");?></a></li>
                     <?php } ?>
                 </ul>
             </li>
             <?php } ?>
-            <?php if (in_array($rules_kv['游戏管理'],$rules)){ ?>
-            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">游戏管理<b class="caret"></b></a>
+            <?php if (in_array($rules_kv['log'],$rules)){ ?>
+            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown"><?php echo _("日志管理");?><b class="caret"></b></a>
                 <ul class="dropdown-menu depth_0">
-                    <?php if (in_array($rules_kv['奖励发放'],$rules)){ ?>
-                    <li><a href="javascript:main('/reward')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">奖励发放</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['多倍奖励活动'],$rules)){ ?>
-                    <li><a href="javascript:main('/multipleactivity')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">多倍奖励活动</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['版本发布'],$rules)){ ?>
-                    <li><a href="javascript:main('/version')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">版本发布</a></li>
-                    <?php } ?>
-                </ul>
-            </li>
-            <?php } ?>
-            <?php if (in_array($rules_kv['系统设置'],$rules)){ ?>
-            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">系统设置<b class="caret"></b></a>
-                <ul class="dropdown-menu depth_0">
-                    <?php if (in_array($rules_kv['奖励设置'],$rules)){ ?>
-                    <li><a href="javascript:main('/rewardsetting')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">奖励设置</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['游戏道具设置'],$rules)){ ?>
-                    <li><a href="javascript:main('/itemsetting')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">游戏道具设置</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['邮件类型设置'],$rules)){ ?>
-                    <li><a href="javascript:main('/emailtype')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">邮件类型设置</a></li>
-                    <?php } ?>
-                </ul>
-            </li>
-            <?php } ?>
-            <?php if (in_array($rules_kv['统计数据'],$rules)){ ?>
-            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">统计数据<b class="caret"></b></a>
-                <ul class="dropdown-menu depth_0">
-                    <?php if (in_array($rules_kv['统计信息'],$rules)){ ?>
-                    <li><a href="javascript:main('/analytics/index')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">统计信息</a></li>
-                    <?php } ?>
-                </ul>
-            </li>
-            <?php } ?>
-            <?php if (in_array($rules_kv['授权管理'],$rules)){ ?>
-            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">授权管理<b class="caret"></b></a>
-                <ul class="dropdown-menu depth_0">
-                    <?php if (in_array($rules_kv['管理员管理'],$rules)){ ?>
-                    <li><a href="javascript:main('/authorization/admin')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">管理员管理</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['角色管理'],$rules)){ ?>
-                    <li><a href="javascript:main('/authorization/role')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">角色管理</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['权限项管理'],$rules)){ ?>
-                    <li><a href="javascript:main('/authorization/authorization')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">权限项管理</a></li>
-                    <?php } ?>
-                </ul>
-            </li>
-            <?php } ?>
-            <?php if (in_array($rules_kv['日志管理'],$rules)){ ?>
-            <li><a href="#" class="dropdown-toggle navbarhide" data-toggle="dropdown">日志管理<b class="caret"></b></a>
-                <ul class="dropdown-menu depth_0">
-                    <?php if (in_array($rules_kv['操作日志'],$rules)){ ?>
-                    <li><a href="javascript:main('/log')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">操作日志</a></li>
+                    <?php if (in_array($rules_kv['log/loginfo'],$rules)){ ?>
+                    <li><a href="javascript:main('/log')" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><?php echo _("操作日志");?></a></li>
                     <?php } ?>
                 </ul>
             </li>
             <?php } ?>
             <li><a href="#"><?php echo $agent;?></a></li>
-            <li><a href="javascript:logout();"><button class="btn btn-xs btn-danger" type="button">退出</button></a></li>
+            <li><a href="javascript:logout();"><button class="btn btn-xs btn-danger" type="button"><?php echo _("退出");?></button></a></li>
           </ul>
           <!--<form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -203,72 +152,25 @@
 			<!--Sidebar content-->
 			<div class="col-sm-2 col-md-2 sidebar">
 			<div class="sidebar-menu">
-                <?php if (in_array($rules_kv['服务器管理'],$rules)){ ?>
-				<a href="#serMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-desktop fa-lg"></i> 服务器管理</a>
-				<ul id="serMeun" class="nav nav-list collapse menu-second">
-                    <?php if (in_array($rules_kv['游戏服务器'],$rules)){ ?>
-					<li><a href="javascript:main('/gameserver')"><i class="fa fa-server"></i> 游戏服务器</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['邮件服务器'],$rules)){ ?>
-					<li><a href="javascript:main('/emailserver')"><i class="fa fa-envelope-o"></i> 邮件服务器</a></li>
-                    <?php } ?>
-				</ul>
-                <?php } ?>
-                <?php if (in_array($rules_kv['游戏管理'],$rules)){ ?>
-				<a href="#gameMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-gamepad fa-lg"></i> 游戏管理</a>
-				<ul id="gameMeun" class="nav nav-list collapse menu-second">
-                    <?php if (in_array($rules_kv['奖励发放'],$rules)){ ?>
-					<li><a href="javascript:main('/reward')"><i class="fa fa-ambulance"></i> 奖励发放</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['多倍奖励活动'],$rules)){ ?>
-					<li><a href="javascript:main('/multipleactivity')"><i class="fa fa-ambulance"></i> 多倍奖励活动</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['版本发布'],$rules)){ ?>
-					<li><a href="javascript:main('/version')"><i class="fa fa-ambulance"></i> 版本发布</a></li>
-                    <?php } ?>
-				</ul>
-                <?php } ?>
-                <?php if (in_array($rules_kv['系统设置'],$rules)){ ?>
-				<a href="#sysMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-gears fa-lg"></i> 系统设置</a>
-				<ul id="sysMeun" class="nav nav-list collapse menu-second">
-                    <?php if (in_array($rules_kv['奖励设置'],$rules)){ ?>
-					<li><a href="javascript:main('/rewardsetting')"><i class="fa fa-cog"></i> 奖励设置</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['游戏道具设置'],$rules)){ ?>
-					<li><a href="javascript:main('/itemsetting')"><i class="fa fa-cog"></i> 游戏道具设置</a></li>
-                    <?php } ?>
-                    <?php if (in_array($rules_kv['邮件类型设置'],$rules)){ ?>
-					<li><a href="javascript:main('/emailtype')"><i class="fa fa-cog"></i> 邮件类型设置</a></li>
-                    <?php } ?>
-				</ul>
-                <?php } ?>
-                <?php if (in_array($rules_kv['统计数据'],$rules)){ ?>
-				<a href="#analyticsMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-bar-chart fa-lg"></i> 统计数据</a>
-				<ul id="analyticsMenu" class="nav nav-list collapse menu-second">
-                    <?php if (in_array($rules_kv['统计信息'],$rules)){ ?>
-					<li><a href="javascript:main('/analytics/index')"><i class="fa fa-list"></i> 统计信息</a></li>
-                    <?php } ?>
-				</ul>
-                <?php } ?>
-                <?php if (in_array($rules_kv['授权管理'],$rules)){ ?>
-				<a href="#authorizationMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-user-secret fa-lg"></i> 授权管理</a>
+                <?php if (in_array($rules_kv['authorization'],$rules)){ ?>
+				<a href="#authorizationMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-user-secret fa-lg"></i> <?php echo _("授权管理");?></a>
 				<ul id="authorizationMenu" class="nav nav-list collapse menu-second">
-                    <?php if (in_array($rules_kv['管理员管理'],$rules)){ ?>
-					<li><a href="javascript:main('/authorization/admin')"><i class="fa fa-users"></i> 管理员管理</a></li>
+                    <?php if (in_array($rules_kv['authorization/admin'],$rules)){ ?>
+					<li><a href="javascript:main('/authorization/admin')"><i class="fa fa-users"></i> <?php echo _("管理员管理");?></a></li>
                     <?php } ?>
-                    <?php if (in_array($rules_kv['角色管理'],$rules)){ ?>
-					<li><a href="javascript:main('/authorization/role')"><i class="fa fa-user"></i> 角色管理</a></li>
+                    <?php if (in_array($rules_kv['authorization/roles'],$rules)){ ?>
+					<li><a href="javascript:main('/authorization/role')"><i class="fa fa-user"></i> <?php echo _("角色管理");?></a></li>
                     <?php } ?>
-                    <?php if (in_array($rules_kv['权限项管理'],$rules)){ ?>
-					<li><a href="javascript:main('/authorization/authorization')"><i class="fa fa-user-secret"></i> 权限项管理</a></li>
+                    <?php if (in_array($rules_kv['authorization/rules'],$rules)){ ?>
+					<li><a href="javascript:main('/authorization/authorization')"><i class="fa fa-user-secret"></i> <?php echo _("权限项管理");?></a></li>
                     <?php } ?>
 				</ul>
                 <?php } ?>
-                <?php if (in_array($rules_kv['日志管理'],$rules)){ ?>
-				<a href="#logMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-file-text fa-lg"></i> 日志管理</a>
+                <?php if (in_array($rules_kv['log'],$rules)){ ?>
+				<a href="#logMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="fa fa-file-text fa-lg"></i> <?php echo _("日志管理");?></a>
 				<ul id="logMenu" class="nav nav-list collapse menu-second">
-                    <?php if (in_array($rules_kv['操作日志'],$rules)){ ?>
-					<li><a href="javascript:main('/log')"><i class="fa fa-file-o"></i> 操作日志</a></li>
+                    <?php if (in_array($rules_kv['log/loginfo'],$rules)){ ?>
+					<li><a href="javascript:main('/log')"><i class="fa fa-file-o"></i> <?php echo _("操作日志");?></a></li>
                     <?php } ?>
 				</ul>
                 <?php } ?>
@@ -311,7 +213,7 @@
 				}
 			});
         }
-        main("/analytics/index");
+        //main("/analytics/index");
 	</script>
   </body>
 </html>

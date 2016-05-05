@@ -2,58 +2,21 @@
 return array(
     'mysql'=>array(
         '0'=>array(
-            'dblocal' =>  'XX',
-            'dbport'  =>  'XX',
-            'dbuser'  =>  'XX',
-            'dbpass'  =>  'XX',
-            'dbname'  =>  'XX',
+            'dblocal' =>  'localhost',
+            'dbport'  =>  '3306',
+            'dbuser'  =>  'root',
+            'dbpass'  =>  '123456',
+            'dbname'  =>  'cherrymanager',
         ),
     ),
-    'redis'=>array(
-        '0'=>array(
-			'host'=>'XXX',
-            'port'=>'XX',
-		),
-        '1'=>array(
-			'host'=>'XX',
-            'port'=>'XX',
-		),
-    ),
-    'zookeeper'=>array(
-        '0'=>array(
-			'ZOOKEEPER_HOST' => 'XX',
-			'ZK_SERVER_PATH' => 'XX',
-			'ZK_MAIL_PATH'   => 'XX',
-		),
-    ),
-    'aws'=>array(
-        '0'=>array(
-            'key'    => 'XX',
-            'secret' => 'XX',
-            'region' => 'XX',
-            'bucket' =>'XX',
-        ),
-    ),
-    'mongodb' =>array(
-        '0'=>array(
-            'dblocal'   =>"XX",
-            'dbname'    =>"XX",
-            'collection'=>array(
-                'mail' =>"XX",
-                'char' =>"XX",
-                'forum'=>"XX",
-            ),
-        )
-    ),
+
 	'define'=>array(
-		'APP_TPL'     =>'XX',//必须 定义模板目录
-		'APP_PATH'    =>'XX',//必须 定义APP根目录
-		'APP_PORT'    =>'XX',//必须 定义APP端口号
-		'ERROR404'    =>'XX',//必须 定义404错误页地址
-		'PAGE'        =>XX,
-		'GMPORT'      =>'XX',
-		'SERVICE_IP'  =>'XX',
-        'SALT'        =>'XX',
+		'APP_TPL'     => 'view',//必须 定义模板目录
+		'APP_PATH'    => '/www/cherrymanager/',//必须 定义APP根目录
+		'APP_PORT'    => '80',//必须 定义APP端口号
+		'ERROR404'    => 'view/html/404.html',//必须 定义404错误页地址
+		'PAGE'        => 10,
+        	'SALT'        => '%@*%1241jsg', //用户加密串
 	),
-    'charset'=>'utf8',//必须 定义字符集
+    'charset' => 'utf8',//必须 定义字符集
 );
