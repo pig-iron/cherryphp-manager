@@ -72,7 +72,7 @@
 function pages(num){
 	$.ajax({
 		type: "POST",
-		url: "/authorization/get_rules",
+		url: "./authorization/get_rules",
 		data: {page:num},
 		dataType: "json",
 		success: function(data){
@@ -142,7 +142,7 @@ $(function(){
 	$('#B_add').click(function(){
 		$('#myModalLabel').html("<?php echo _("添加权限项");?>");
 		$('#myModalBody').html("");
-		$('#myModalBody').load("/authorization/rules_add_show");
+		$('#myModalBody').load("./authorization/rules_add_show");
 		$('#do').html("<?php echo _("保存");?>");
 		$('#cancel').html("<?php echo _("取消");?>");
 		$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
@@ -159,7 +159,7 @@ $(function(){
 		}else{
 			$('#myModalLabel').html("<?php echo _("更新权限项");?>");
 			$('#myModalBody').html("");
-			$('#myModalBody').load("/authorization/rules_update_show");
+			$('#myModalBody').load("./authorization/rules_update_show");
 			$('#do').html("<?php echo _("保存");?>");
 			$('#cancel').html("<?php echo _("取消");?>");
 			$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
@@ -207,7 +207,7 @@ $(function(){
 		}
 		$.ajax({
 			type: "POST",
-			url: urls,
+			url: "."+urls,
 			data: dataarr,
 			dataType: "json",
 			success: function(data){

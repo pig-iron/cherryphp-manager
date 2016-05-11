@@ -31,7 +31,7 @@ class Dispatch
         }
         else
         {
-            if ($_SERVER['REQUEST_URI']=="/"){
+            if ($_SERVER['REQUEST_URI']=="/" or $_SERVER['REQUEST_URI']==$_SERVER['PATH_INFO']."/"){
                 $this->U($_SERVER['REQUEST_URI']."index");
             }
             else
@@ -43,6 +43,8 @@ class Dispatch
     
     private static function U($url,$httpdata="") //URL组装
     {
+		$url=str_replace($_SERVER['PATH_INFO'],'',$url);
+		// print_r($url);
         if (strstr($url,"?")){
             $part_url=explode('?',$url);
             $part_class=explode('/',$part_url[0]);

@@ -64,7 +64,7 @@
 function pages(num){
 	$.ajax({
 		type: "POST",
-		url: "/logact/getAllLog",
+		url: "./logact/getAllLog",
 		data: {page:num},
 		dataType: "json",
 		success: function(data){
@@ -134,7 +134,7 @@ $(function(){
 	$('#B_inf').click(function(){
 		$('#myModalLabel').html("<?php echo _('添加权限项');?>");
 		$('#myModalBody').html("");
-		$('#myModalBody').load("/logact/detailShow");
+		$('#myModalBody').load("./logact/detailShow");
 		$('#do').html("<?php echo _('保存');?>");
 		$('#cancel').html("<?php echo _('取消');?>");
 		$('#myModal').modal({backdrop: 'static', keyboard: false},"toggle");
@@ -155,7 +155,7 @@ $(function(){
 		}
 		$.ajax({
 			type: "POST",
-			url: urls,
+			url: "."+urls,
 			data: dataarr,
 			dataType: "json",
 			success: function(data){

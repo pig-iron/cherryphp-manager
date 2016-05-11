@@ -163,19 +163,19 @@
 
 /****************************/
 .bbit-tree-node-expanded .bbit-tree-node-icon{
-	background-image:url(/assets/images/tree/folder-open.gif);
+	background-image:url(../images/tree/folder-open.gif);
 }
 
 .bbit-tree-node-leaf .bbit-tree-node-icon{
-	background-image:url(/assets/images/tree/leaf.gif);
+	background-image:url(../images/tree/leaf.gif);
 }
 
 .bbit-tree-node-collapsed .bbit-tree-node-icon{
-	background-image:url(/assets/images/tree/folder.gif);
+	background-image:url(../images/tree/folder.gif);
 }
 
 .bbit-tree-node-loading .bbit-tree-node-icon{
-	background-image:url(/assets/images/tree/loading.gif) !important;
+	background-image:url(../images/tree/loading.gif) !important;
 }
 
 .bbit-tree-node .bbit-tree-node-inline-icon {
@@ -188,63 +188,63 @@
 }
 
 .bbit-tree-lines .bbit-tree-elbow{
-	background-image:url(/assets/images/tree/elbow.gif);
+	background-image:url(../images/tree/elbow.gif);
 }
 
 .bbit-tree-lines .bbit-tree-elbow-plus{
-	background-image:url(/assets/images/tree/elbow-plus.gif);
+	background-image:url(../images/tree/elbow-plus.gif);
 }
 
 .bbit-tree-lines .bbit-tree-elbow-minus{
-	background-image:url(/assets/images/tree/elbow-minus.gif);
+	background-image:url(../images/tree/elbow-minus.gif);
 }
 
 .bbit-tree-lines .bbit-tree-elbow-end{
-	background-image:url(/assets/images/tree/elbow-end.gif);
+	background-image:url(../images/tree/elbow-end.gif);
 }
 
 .bbit-tree-lines .bbit-tree-elbow-end-plus{
-	background-image:url(/assets/images/tree/elbow-end-plus.gif);
+	background-image:url(../images/tree/elbow-end-plus.gif);
 }
 
 .bbit-tree-lines .bbit-tree-elbow-end-minus{
-	background-image:url(/assets/images/tree/elbow-end-minus.gif);
+	background-image:url(../images/tree/elbow-end-minus.gif);
 }
 
 .bbit-tree-lines .bbit-tree-elbow-line{
-	background-image:url(/assets/images/tree/elbow-line.gif);
+	background-image:url(../images/tree/elbow-line.gif);
 }
 
 .bbit-tree-no-lines .bbit-tree-elbow-plus{
-	background-image:url(/assets/images/tree/elbow-plus-nl.gif);
+	background-image:url(../images/tree/elbow-plus-nl.gif);
 }
 
 .bbit-tree-no-lines .bbit-tree-elbow-minus{
-	background-image:url(/assets/images/tree/elbow-minus-nl.gif);
+	background-image:url(../images/tree/elbow-minus-nl.gif);
 }
 
 .bbit-tree-no-lines .bbit-tree-elbow-end-plus{
-	background-image:url(/assets/images/tree/elbow-end-plus-nl.gif);
+	background-image:url(../images/tree/elbow-end-plus-nl.gif);
 }
 
 .bbit-tree-no-lines .bbit-tree-elbow-end-minus{
-	background-image:url(/assets/images/tree/elbow-end-minus-nl.gif);
+	background-image:url(../images/tree/elbow-end-minus-nl.gif);
 }
 
 .bbit-tree-arrows .bbit-tree-elbow-plus{
-    background-image:url(/assets/images/tree/arrows.gif);
+    background-image:url(../images/tree/arrows.gif);
 }
 
 .bbit-tree-arrows .bbit-tree-elbow-minus{
-    background-image:url(/assets/images/tree/arrows.gif);
+    background-image:url(../images/tree/arrows.gif);
 }
 
 .bbit-tree-arrows .bbit-tree-elbow-end-plus{
-    background-image:url(/assets/images/tree/arrows.gif);
+    background-image:url(../images/tree/arrows.gif);
 }
 
 .bbit-tree-arrows .bbit-tree-elbow-end-minus{
-    background-image:url(/assets/images/tree/arrows.gif);
+    background-image:url(../images/tree/arrows.gif);
 }
 
 .bbit-tree-node{

@@ -19,7 +19,7 @@
 $(function(){
 	$.ajax({
 		type: "POST",
-		url: "/authorization/get_admin_one",
+		url: "./authorization/get_admin_one",
 		data: {id:$('#myModal').attr("ids")},
 		dataType: "json",
 		success: function(data){
