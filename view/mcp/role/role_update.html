@@ -18,7 +18,7 @@
 $(function(){
 	$.ajax({
 		type: "POST",
-		url: "/authorization/get_role_one",
+		url: "./authorization/get_role_one",
 		data: {id:$('#myModal').attr("ids")},
 		dataType: "json",
 		success: function(data){

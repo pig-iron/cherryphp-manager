@@ -8,7 +8,7 @@ class main extends \cherryphp\CherryView
 	}
 	public function index($params)
 	{
-		if ($_COOKIE['r_t']){
+		if (isset($_COOKIE['r_t']) && $_COOKIE['r_t']){
             $rules=\module\mauthrules::authtoken();
             if ($rules){
                 $r_t=\module\mauthrules::preventinjection($_COOKIE['r_t']);
@@ -18,10 +18,10 @@ class main extends \cherryphp\CherryView
                 $this->assign("rules_kv",$rules_kv);
                 $this->render("mcp/main");
             }else{
-                header("Location: /login");
+                header("Location: ./login");
             }
 		}else{
-            header("Location: /login");
+            header("Location: ./login");
         }
 	}
 
