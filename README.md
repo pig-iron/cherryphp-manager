@@ -2,10 +2,87 @@
 cherrymanager web management system
 
 Nginx config
-```nginx
-server {    listen       8008;    server_name  localhost;    root   /www/2016/aa/hw;    index  index.html index.htm index.php;        access_log /usr/local/server/nginx160/logs/adex.log main;    location / {        fastcgi_pass   127.0.0.1:9000;        fastcgi_index  index.php;        if (!-e $request_filename){            rewrite (.*) /index.php last;        }        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;        fastcgi_param  PATH_INFO        '';        include        fastcgi_params;        }    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|js|css|woff|ttf|woff2|otf)$ {        if (-f $request_filename){            expires 1d;            break;        }    }    error_page   500 502 503 504  /50x.html;    location = /50x.html {        root   html;    }}
 
+one domain one wwwroot：
+```nginx
+server {
+    listen       8008;
+    server_name  localhost;
+    root   /www/2016/aa/hw;
+    index  index.html index.htm index.php;
+    
+    access_log /usr/local/server/nginx160/logs/adex.log main;
+    location / {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        if (!-e $request_filename){
+            rewrite (.*) /index.php last;
+        }
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_param  PATH_INFO        '';
+        include        fastcgi_params;
+    
+    }
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|js|css|woff|ttf|woff2|otf)$ {
+        if (-f $request_filename){
+            expires 1d;
+            break;
+        }
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
 ```
+
+one domain multiple wwwroot:
+```nginx
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        root   /www;
+        index  index.html index.htm index.php;
+    }
+
+    location ~ /2016/aa/hw/.*/?.*\.(gif|jpg|jpeg|png|bmp|swf|js|css|woff|ttf|woff2|otf)$ {
+        root    /www;
+        allow all;
+    }
+    location ~ /2016/aa/hw/.*/?$ {
+        root    /www;
+        index   index.php index.html index.htm;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        if (!-e $request_filename){
+                rewrite ^/(.*)$ /2016/aa/hw/index.php last;
+        }
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_param  PATH_INFO        /2016/aa/hw;
+        include        fastcgi_params;
+    }
+    
+    location ~ /2016/bb/hw/.*/?.*\.(gif|jpg|jpeg|png|bmp|swf|js|css|woff|ttf|woff2|otf)$ {
+            root    /www;
+            allow all;
+    }
+    location ~ /2016/bb/hw/.*/?$ {
+        root    /www;
+        index   index.php index.html index.htm;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        if (!-e $request_filename){
+                rewrite ^/(.*)$ /2016/bb/hw/index.php last;
+        }
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_param  PATH_INFO        /2016/bb/hw;
+        include        fastcgi_params;
+    }
+}
+```
+
 
 # How to Hello world
 ## step1.
