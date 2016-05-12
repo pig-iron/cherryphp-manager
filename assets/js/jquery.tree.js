@@ -28,7 +28,7 @@
                  * @description {Config} cbiconpath  
                  * {String} Checkbox image path.
                  */
-                cbiconpath: "/assets/images/icons/",
+                cbiconpath: "./assets/images/icons/",
                 icons: ["checkbox_0.gif", "checkbox_1.gif", "checkbox_2.gif"],
                 /**
                  * @description {Config} showcheck  
